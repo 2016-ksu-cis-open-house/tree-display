@@ -1,0 +1,19 @@
+{
+  "name": "tree-display",
+  "version": "0.0.0",
+  "description": "The tree display for CIS open house",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/2016-ksu-cis-open-house/tree-display.git"
+  },
+  "author": "Joy Hauser & Kevin Dice",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/2016-ksu-cis-open-house/tree-display/issues"
+  },
+  "homepage": "https://github.com/2016-ksu-cis-open-house/tree-display"
+}
