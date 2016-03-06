@@ -28,10 +28,21 @@ nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
 body{
- background: url(../images/bg3.png);
+ background: url(../images/rest.jpg);
 	font-family: 'Open Sans', sans-serif;
 	text-align: center;
 }
+@media (min-width: 720px){
+  body{
+    background: url(../images/gt720.jpg);
+  }
+}
+@media (min-width: 1080px){
+  body{
+    background: url(../images/gt1080.jpg);
+  }
+}
+
 .wrap{
 	margin: 0 auto;
 	width: 90%;
@@ -44,7 +55,7 @@ body a,form li,input[type="submit"],input[type="text"],.sixth-login input[type="
 }
 h1 {
 	  font-family: 'Marvel', sans-serif;
-	  color: #FFFFFF;
+	  color: #000;
 	  font-size: 3em;
 	  font-weight: 600;
 	  padding-top: 1em;
@@ -70,7 +81,13 @@ h2 {
 	  width: 27%;
 	  margin: 2% auto;
 	  height: 505px;
+
 }
+.registration p {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
 input.text {
 	  outline: none;
 	  background: none;
@@ -79,16 +96,6 @@ input.text {
 	  padding: 25px;
 	  border: none;
 	  border-bottom: 2px solid#29afbb;
-	  font-size: 1em;
-	  font-weight: 100;
-}
-input[type="password"]{
-	  outline: none;
-	  background: none;
-	  color:#29afbb;
-	  width: 87%;
-	  padding: 21px;
-	  border: none;
 	  font-size: 1em;
 	  font-weight: 100;
 }
@@ -110,54 +117,6 @@ input[type="submit"]:hover {
 	-webkit-transition: 1s all;
 	-moz-transition: 1s all;
 	-o-transition: 1s all;
-}
-ul.bottom-icons {
-	  background: #29AFBB;
-	  height: 62px;
-	  border: 2px solid#218C95;
-  	  border-top: none;
-}
-ul.bottom-icons li {
-	  padding: 16px 10px 0px 10px;
-	  display: inline-block;
-	  margin: 0 14px;
-	  vertical-align: bottom;
-	  height: 41px;
-	  border-bottom: 5px solid#29AFBB;
-	  cursor: pointer;
-}
-ul.bottom-icons li a {
-  		color: #fff;
-  		  vertical-align: -webkit-baseline-middle;
-  		   
-}
-ul.bottom-icons li:hover {
-	padding: 16px 10px 0px 10px;
-	  background: #4fd0db;
-	  height: 41px;
-	  border-bottom: 5px solid#ff331d;
-	  	transition: 1s all;
-	-webkit-transition: 1s all;
-	-moz-transition: 1s all;
-	-o-transition: 1s all;
-}
-a.facebook {
-	  background: url(../images/img-sprite.png) no-repeat 8px 0px;
-	  width: 38px;
-	  height: 46px;
-	  display: block;
-}
-a.twitter {
-	  background: url(../images/img-sprite.png) no-repeat -25px 0px;
-	  width: 38px;
-	  height: 29px;
-	  display: block;
-}
-a.gp {
-	  background: url(../images/img-sprite.png) no-repeat -58px 0px;
-	  width: 38px;
-	  height: 30px;
-	  display: block;
 }
 /*--copyrights--*/
 .copy-rights {
@@ -322,3 +281,4 @@ a.gp {
 	ul.bottom-icons li:hover {
 	  padding: 16px 6px 0px 10px;
 	}
+
