@@ -29,15 +29,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         <form>
           <div class="form-info">
-            <input type="text" class="text" value="Your First Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your First Name';}" >
+            <input type="text" class="text" id="name" value="Your First Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your First Name';}" >
           </div>
           <input type="submit" value="ADD YOUR NAME">
         </form>
       </div>
 
   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
   <script>
-    var socket = io();    
+    var socket = io();
+    $('form').submit(function(e){
+      e.preventDefault();
+      socket.emit('add name', $('#name').val());
+
+      // Disable form after first submission
+      $('form').unbind('submit');
+      $('form').submit(function(e){ e.preventDefault(); });
+    });
   </script>
 
   </body>
