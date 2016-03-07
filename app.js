@@ -44,12 +44,11 @@ io.on('connection', function(socket){
     console.log('Attempting to add name ' + msg);
     if (black_list.has(msg.toLowerCase())) {
        // TODO: Warn client
-       console.log("User entered a bad name");
+       console.log(socket.handshake.address + " entered a bad name");
        return "Bad name";
     }
     // TODO: White list
     names.push(msg);
-    console.log("Good name");
     io.emit('add name', msg)
   });
 });
