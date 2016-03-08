@@ -67,13 +67,13 @@ h2 {
 	  font-size: 1.5em;
 	  font-weight: 300;
 	  margin-bottom: 40px;
-	  background: #29afbb;
+	  background: #582c83;
 	  padding: 15px;
-	  border: 2px solid#218C95;
+	  border: 2px solid #482475;
 	  border-bottom: none;
 }
 .form-info {
-		border: 2px solid#29afbb;	
+		border: 2px solid #582c83;	
 		margin: 2em 2em 0 2em;
 }
 .registration {
@@ -91,18 +91,19 @@ h2 {
 input.text {
 	  outline: none;
 	  background: none;
-	  color: #29afbb;
+	  color: #000;
 	  width: 87%;
-	  padding: 25px;
+	  padding: 15px;
 	  border: none;
-	  border-bottom: 2px solid#29afbb;
-	  font-size: 1em;
+	  border-bottom: 2px solid #582c83;
+	  font-size: 2em;
 	  font-weight: 100;
+	  font-family: inherit;
 }
 input[type="submit"] {
 	  outline: none;
 	  border: none;
-	  background: #ff331d;
+	  background: #582c83;
 	  color: #fff;
 	  width: 85%;
 	  margin: 2em 0 1.5em 0;
