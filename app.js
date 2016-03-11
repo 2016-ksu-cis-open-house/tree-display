@@ -38,6 +38,10 @@ app.get('/tree', function (req, res){
   res.render('tree', {names: names});
 });
 
+app.get('/moderator', function (req, res){
+  res.render('moderator', {names: names});
+});
+
 io.on('connection', function(socket){
   console.log('A user connected from: ' + socket.handshake.address);
   socket.on('add name', function(msg){
