@@ -20,13 +20,4 @@ html
         input(type='submit', value='ADD YOUR NAME')
     script(src='https://cdn.socket.io/socket.io-1.4.5.js')
     script(src='https://code.jquery.com/jquery-2.2.1.min.js')
-    script.
-      var socket = io();
-      $('form').submit(function(e){
-      e.preventDefault();
-      socket.emit('add name', $('#name').val());
-      // Disable form after first submission
-      $('form').remove();
-      $('.registration').append($('<br><br>'), $('<h3>').text('Thanks!'));
-      });
-
+    script(src='/js/form.js')

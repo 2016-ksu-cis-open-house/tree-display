@@ -10,9 +10,4 @@ html
     script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js')
     script(src='https://cdn.socket.io/socket.io-1.4.5.js')
     script(src='https://code.jquery.com/jquery-2.2.1.min.js')
-    script.
-      var socket = io();
-      socket.on('add name', function(msg){
-      $('#names').append($('<li>').text(msg));
-      });
-
+    script(src='/js/tree.js')
