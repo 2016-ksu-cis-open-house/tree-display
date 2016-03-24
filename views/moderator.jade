@@ -15,10 +15,8 @@ html
       p
         | Decide whether or not the name should be added to the tree.
       form
-        input(type='submit', value='ACCEPT NAME')
-        input(type='submit', value='DECLINE NAME')
-        input(type='submit', value='DELETE ELEMENT')
-        input(type='submit', value='CLEAR TREE')
+        input#accept(type='submit', value='ACCEPT NAME')
+        input#decline(type='submit', value='DECLINE NAME')
     script(src='https://cdn.socket.io/socket.io-1.4.5.js')
     script(src='https://code.jquery.com/jquery-2.2.1.min.js')
     script(src='/js/moderator.js')

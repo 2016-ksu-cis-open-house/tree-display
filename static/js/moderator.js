@@ -15,19 +15,3 @@ $('form').decline(function(e){
   $('form').unbind('decline');
   $('form').decline(function(e){ e.preventDefault(); });
 });
-
-$('form').delete(function(e){
-  e.preventDefault();
-  socket.emit('Delete');
-  // Disable form after first submission
-  $('form').unbind('delete element', 'delete');
-  $('form').delete(function(e){ e.preventDefault(); });
-});
-
-$('form').clear(function(e){
-  e.preventDefault();
-  socket.emit('clear tree', 'Clear');
-  // Disable form after first submission
-  $('form').unbind('clear');
-  $('form').clear(function(e){ e.preventDefault(); });
-});
