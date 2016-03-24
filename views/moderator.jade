@@ -17,6 +17,13 @@ html
       form
         input#accept(type='submit', value='ACCEPT NAME')
         input#decline(type='submit', value='DECLINE NAME')
+    .registration
+      h2 Modify Tree
+      p
+        | Either specify a value to remove from the tree or clear the tree
+      form
+        input#delete(type='submit', value='DELETE ELEMENT')
+        input#clear(type='submit', value='CLEAR TREE')
     script(src='https://cdn.socket.io/socket.io-1.4.5.js')
     script(src='https://code.jquery.com/jquery-2.2.1.min.js')
     script(src='/js/moderator.js')
