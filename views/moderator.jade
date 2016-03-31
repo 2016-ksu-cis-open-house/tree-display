@@ -7,13 +7,13 @@ html
     // webfonts
     link(href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800,400', rel='stylesheet', type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Marvel:400,700', rel='stylesheet', type='text/css')
-    // //webfonts
   body
     h1 KSU CIS Open House Tree Moderator
     .registration
       h2 Moderator
       p
-        | Decide whether or not the name should be added to the tree.
+        | Decide whether the following name should be added to the tree:
+        #currentName
       form
         input#accept(type='submit', value='ACCEPT NAME')
         input#decline(type='submit', value='DECLINE NAME')
