@@ -2,7 +2,7 @@ var socket = io();
 
 $('form').submit(function(e){
     e.preventDefault();
-    socket.emit('add name', $('#name').val());
+    socket.emit('verify name', $('#name').val());
     
     // Remove form and replace with "Thanks" message
     $('form').remove();

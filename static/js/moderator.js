@@ -1,11 +1,19 @@
 var socket = io();
+//var verifyNameFormState = false;
+
+socket.on('moderate name', function(msg){
+    $('#currentName').text(msg);
+});
 
 $('#accept').click(function(e){
   // Prevent JavaScript from doing normal functionality
   e.preventDefault();
 
+  // Serialize the name and whether the name is valid
+  var nameInfo = JSON.stringify({msg, true});
+
   // Emit a message to accept the current name
-  socket.emit('accept name', 'Valid');
+  socket.emit('add name', nameInfo);
 
   // Disable form after first submission
   $('form').unbind('accept');
@@ -16,8 +24,11 @@ $('#decline').click(function(e){
   // Prevent JavaScript from doing normal functionality
   e.preventDefault();
 
-  // Emit a message to decline the current name
-  socket.emit('decline name', 'Invalid');
+  // Serialize the name and whether the name is valid
+  var nameInfo = JSON.stringify({msg, false});
+
+  // Emit a message to accept the current name
+  socket.emit('add name', nameInfo);
 
   // Disable form after first submission
   $('form').unbind('decline');
