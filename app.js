@@ -21,7 +21,8 @@ function load_file(s, file) {
     if (err) {
       return console.log(err);
     }
-    t = data.split("\n");
+
+    t = data.split("\r\n");
     for (var i = 0; i < t.length; i++) {
       s.add(t[i].toLowerCase());
     }
