@@ -111,7 +111,7 @@ io.on('connection', function(socket){
       console.log('The name ' + name + ' has been whitelisted');
 
       // Add the various words in the name to the whitelist
-      addWhitelistName(name);
+      whitelistName(name);
 
       // Update the tree and thank the user
       endUserInteraction(name);
@@ -132,7 +132,7 @@ io.on('connection', function(socket){
   });
 });
 
-function addWhitelistName(name)
+function whitelistName(name)
 {
   var nameElements = name.split(" ");
   var i;
