@@ -2,7 +2,7 @@ var socket = io();
 //var verifyNameFormState = false;
 
 socket.on('moderate name', function(msg){
-    $('#currentName').text(msg);
+  $('#currentName').text(msg);
 });
 
 $('#accept').click(function(e){

@@ -84,9 +84,9 @@ io.on('connection', function(socket){
        // TODO: Create GUI based warning/handling system
        //alert(socket.handshake.address + " entered a bad name");
 
-       nameOnBlackList = true;
+      nameOnBlackList = true;
 
-       console.log('The word ' + msg + ' is on the blacklist');
+      console.log('The word ' + msg + ' is on the blacklist');
     }
 
     // Verify that the name is not on either list
