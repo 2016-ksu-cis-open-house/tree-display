@@ -52,8 +52,6 @@ io.on('connection', function(socket){
 
     // Create variables to assess the validity of the name
     var nameElements = msg.split(" ");
-    var nameOnWhiteList = false;
-    var nameOnBlackList = false;
     var nameScore = 0;
 
     // Verify that all of the separate words in the name are
@@ -71,12 +69,12 @@ io.on('connection', function(socket){
 
     if(nameScore == nameElements.length)
     {
-      nameOnWhiteList = true;
-
       // Update the tree and thank the user
       endUserInteraction(msg);
 
       console.log('The name ' + msg + ' is on the whitelist');
+
+      return;
     }
 
     // Verify that the name as a whole is on the blacklist
@@ -84,19 +82,15 @@ io.on('connection', function(socket){
       // Show unaccepted name notification
       socket.emit('blacklisted name', msg);
 
-      nameOnBlackList = true;
-
       console.log('The word ' + msg + ' is on the blacklist');
+
+      return;
     }
 
-    // Verify that the name is not on either list
-    if(!nameOnWhiteList && !nameOnBlackList)
-    {
-      // Send the name to the moderator to verify
-      io.emit('moderate name', msg);
+    // Send the name to the moderator to verify
+    io.emit('moderate name', msg);
 
-      console.log('The name ' + msg + ' was sent to the moderator');
-    }
+    console.log('The name ' + msg + ' was sent to the moderator');
   });
 
   // Submit the name to be added to the proper lists and/or the tree
