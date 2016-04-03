@@ -74,7 +74,7 @@ io.on('connection', function(socket){
       nameOnWhiteList = true;
 
       // Update the tree and thank the user
-      endUserInteraction(name);
+      endUserInteraction(msg);
 
       console.log('The name ' + msg + ' is on the whitelist');
     }
