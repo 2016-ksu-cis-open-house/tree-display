@@ -102,7 +102,8 @@ io.on('connection', function(socket){
   // Send the name to the tree
   socket.on('submit name info', function(msgInfo){
     // Deserialize parameter
-    var nameInfo = JSON.parse(msg);
+    var nameInfo = JSON.parse(msgInfo);
+    var name = nameInfo[0];
 
     // Check if the name is accepted by the moderator
     if(nameInfo[1])
