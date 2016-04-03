@@ -81,8 +81,8 @@ io.on('connection', function(socket){
 
     // Verify that the name as a whole is on the blacklist
     if (black_list.has(msg.toLowerCase())) {
-       // TODO: Create GUI based warning/handling system
-       //alert(socket.handshake.address + " entered a bad name");
+      // Show unaccepted name notification
+      io.emit('blacklisted name', msg);
 
       nameOnBlackList = true;
 
