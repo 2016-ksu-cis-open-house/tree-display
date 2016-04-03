@@ -110,23 +110,9 @@ io.on('connection', function(socket){
     // Check if the name is accepted by the moderator
     if(nameInfo[1])
     {
-      // Add the various words in the name to the whitelist
-      var name = nameInfo[0];
-      var nameElements = name.split(" ");
-      var i;
-      var numEleNames = nameElements.length;
 
-      // Go through all of the words in the name
-      for(i = 0; i < numEleNames; i++)
-      {
-        // Verify whether the word is greater than 3 characters
-        var word = nameElements[i];
-        if(word.length > 2)
-        {
-          // Add the current word to the whitelist
-          white_list.append(word);
-        }
-      }
+      // Add the various words in the name to the whitelist
+      addWhitelistName(name);
 
       // Add the current name to the list of names
       names.append(msg);
@@ -138,6 +124,25 @@ io.on('connection', function(socket){
     }
   });
 });
+
+function addWhitelistName(name)
+{
+  var nameElements = name.split(" ");
+  var i;
+  var numEleNames = nameElements.length;
+
+  // Go through all of the words in the name
+  for(i = 0; i < numEleNames; i++)
+  {
+    // Verify whether the word is greater than 3 characters
+    var word = nameElements[i];
+    if(word.length > 2)
+    {
+      // Add the current word to the whitelist
+      white_list.add(word.toLowerCase());
+    }
+  }
+}
 
 http.listen(3000, function(){
   console.log('Listening on port 3000!');
