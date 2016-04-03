@@ -9,6 +9,8 @@ $('#accept').click(function(e){
   // Prevent JavaScript from doing normal functionality
   e.preventDefault();
 
+  console.log('The name ' + $('#currentName').text() + ' has been accepted');
+
   // Serialize the name and whether the name is valid
   var nameInfo = JSON.stringify([$('#currentName').text(), true]);
 
@@ -22,6 +24,8 @@ $('#accept').click(function(e){
 $('#decline').click(function(e){
   // Prevent JavaScript from doing normal functionality
   e.preventDefault();
+
+  console.log('The name ' + $('#currentName').text() + ' has been denied');
 
   // Serialize the name and whether the name is valid
   var nameInfo = JSON.stringify([$('#currentName').text(), false]);
