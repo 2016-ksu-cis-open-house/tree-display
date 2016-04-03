@@ -117,7 +117,7 @@ io.on('connection', function(socket){
     else
     {
       // Add the name to the blacklist
-      black_list.append(nameElements[i]);
+      black_list.add(name);
     }
   });
 });
