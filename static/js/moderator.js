@@ -1,10 +1,12 @@
 var socket = io();
-//var verifyNameFormState = false;
 
+// Get the name from the server and put on the form for
+// the moderator to approve
 socket.on('moderate name', function(msg){
   $('#currentName').text(msg);
 });
 
+// Handle when the moderator accepts the current name
 $('#accept').click(function(e){
   // Prevent JavaScript from doing normal functionality
   e.preventDefault();
@@ -21,6 +23,7 @@ $('#accept').click(function(e){
   $('#currentName').empty();
 });
 
+// Handle when the moderator declines the current name
 $('#decline').click(function(e){
   // Prevent JavaScript from doing normal functionality
   e.preventDefault();

@@ -46,18 +46,18 @@ app.get('/moderator', function (req, res){
 io.on('connection', function(socket){
   console.log('A user connected from: ' + socket.handshake.address);
 
-  // Run this function when the "verify name" channel recieves an entry
+  // Handle when the user sends a name to be verified
   socket.on('verify name', function(msg){
-    // Send start message to console
     console.log('Attempting to add name ' + msg);
 
     // Create variables to assess the validity of the name
     var nameElements = msg.split(" ");
     var nameOnWhiteList = false;
     var nameOnBlackList = false;
-    var nameScore = 0; // Use this to verify that all of the words are valid
+    var nameScore = 0;
 
-    // Verify that all of the separate words in the name are on the whitelist
+    // Verify that all of the separate words in the name are
+    // on the whitelist
     var i;
     var numElements = nameElements.length;
 
@@ -99,13 +99,13 @@ io.on('connection', function(socket){
     }
   });
 
-  // Send the name to the tree
+  // Submit the name to be added to the proper lists and/or the tree
   socket.on('submit name info', function(msgInfo){
     // Deserialize parameter
     var nameInfo = JSON.parse(msgInfo);
     var name = nameInfo[0];
 
-    // Check if the name is accepted by the moderator
+    // Check if the name was accepted by the moderator
     if(nameInfo[1])
     {
       console.log('The name ' + name + ' has been whitelisted');
@@ -132,6 +132,7 @@ io.on('connection', function(socket){
   });
 });
 
+// Add the words in the provided name to the whitelist
 function whitelistName(name)
 {
   var nameElements = name.split(" ");
@@ -151,6 +152,7 @@ function whitelistName(name)
   }
 }
 
+// End the interaction that the current user has with the program
 function endUserInteraction(name)
 {
   // Push the name to the tree
