@@ -15,9 +15,8 @@ $('#accept').click(function(e){
   // Emit a message to accept the current name
   socket.emit('add name', nameInfo);
 
-  // Disable form after first submission
-  $('form').unbind('accept');
-  $('form').accept(function(e){ e.preventDefault(); });
+  // Action after form is submitted
+  $('#currentName').empty();
 });
 
 $('#decline').click(function(e){
@@ -30,7 +29,6 @@ $('#decline').click(function(e){
   // Emit a message to accept the current name
   socket.emit('add name', nameInfo);
 
-  // Disable form after first submission
-  $('form').unbind('decline');
-  $('form').decline(function(e){ e.preventDefault(); });
+  // Action after form is submitted
+  $('#currentName').empty();
 });
