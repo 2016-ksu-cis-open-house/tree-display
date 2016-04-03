@@ -82,7 +82,7 @@ io.on('connection', function(socket){
     // Verify that the name as a whole is on the blacklist
     if (black_list.has(msg.toLowerCase())) {
       // Show unaccepted name notification
-      io.emit('blacklisted name', msg);
+      socket.emit('blacklisted name', msg);
 
       nameOnBlackList = true;
 
