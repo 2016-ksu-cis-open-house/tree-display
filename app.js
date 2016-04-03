@@ -100,7 +100,7 @@ io.on('connection', function(socket){
   });
 
   // Send the name to the tree
-  socket.on('add name', function(msg){
+  socket.on('submit name info', function(msgInfo){
     // Deserialize parameter
     var nameInfo = JSON.parse(msg);
 
@@ -122,6 +122,12 @@ io.on('connection', function(socket){
       // Add the name to the blacklist
       black_list.add(name);
     }
+  });
+
+  // Send the name to the tree
+  socket.on('add name', function(msg){
+    // Add the current name to the list of names
+    names.push(word);
   });
 });
 

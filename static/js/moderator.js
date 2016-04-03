@@ -15,7 +15,7 @@ $('#accept').click(function(e){
   var nameInfo = JSON.stringify([$('#currentName').text(), true]);
 
   // Emit a message to accept the current name
-  socket.emit('add name', nameInfo);
+  socket.emit('submit name info', nameInfo);
 
   // Action after form is submitted
   $('#currentName').empty();
@@ -31,7 +31,7 @@ $('#decline').click(function(e){
   var nameInfo = JSON.stringify([$('#currentName').text(), false]);
 
   // Emit a message to accept the current name
-  socket.emit('add name', nameInfo);
+  socket.emit('submit name info', nameInfo);
 
   // Action after form is submitted
   $('#currentName').empty();
