@@ -17,7 +17,7 @@ socket.on('blacklisted name', function(msg){
   errorNotify();
 
   // Remove name from textbox
-  $('#name').empty();
+  $('#name').val('');
 });
 
 // Handle the end of the interaction between the user and the tree
