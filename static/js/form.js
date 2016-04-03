@@ -1,12 +1,8 @@
 var socket = io();
 
 $('form').submit(function(e){
-    e.preventDefault();
-    socket.emit('verify name', $('#name').val());
-    
-    // Remove form and replace with "Thanks" message
-    $('form').remove();
-    $('.registration').append($('<br><br>'), $('<h3>').text('Thanks!'));
+  e.preventDefault();
+  socket.emit('verify name', $('#name').val());
 });
 
 socket.on('blacklisted name', function(msg){
@@ -17,6 +13,11 @@ socket.on('blacklisted name', function(msg){
   $('#name').empty();
 });
 
+socket.on('thank you', function(){
+  // Remove form and replace with "Thanks" message
+  $('form').remove();
+  $('.registration').append($('<br><br>'), $('<h3>').text('Thanks!'));
+});
 
 function errorNotify()
 {

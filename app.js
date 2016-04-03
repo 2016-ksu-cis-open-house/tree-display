@@ -73,8 +73,8 @@ io.on('connection', function(socket){
     {
       nameOnWhiteList = true;
 
-      // Send the name to the tree
-      io.emit('add name', msg)
+      // Update the tree and thank the user
+      endUserInteraction(name);
 
       console.log('The name ' + msg + ' is on the whitelist');
     }
@@ -93,7 +93,7 @@ io.on('connection', function(socket){
     if(!nameOnWhiteList && !nameOnBlackList)
     {
       // Send the name to the moderator to verify
-      io.emit('moderate name', msg)
+      io.emit('moderate name', msg);
 
       console.log('The name ' + msg + ' was sent to the moderator');
     }
@@ -113,8 +113,8 @@ io.on('connection', function(socket){
       // Add the various words in the name to the whitelist
       addWhitelistName(name);
 
-      // Add the current name to the list of names
-      names.append(msg);
+      // Update the tree and thank the user
+      endUserInteraction(name);
     }
     else
     {
@@ -149,6 +149,15 @@ function addWhitelistName(name)
       white_list.add(word.toLowerCase());
     }
   }
+}
+
+function endUserInteraction(name)
+{
+  // Push the name to the tree
+  io.emit('add name', name);
+
+  // Show the thank you message
+  io.emit('thank you');
 }
 
 http.listen(3000, function(){
