@@ -66,14 +66,11 @@ io.on('connection', function(socket){
       if(white_list.has(nameElements[i].toLowerCase()))
       {
         nameScore += 1;
-        console.log('The word ' + nameElements[i] + ' is on the whitelist');
       }
     }
 
     if(nameScore == nameElements.length)
     {
-      console.log('All of the elements of the name are in the whitelist');
-
       nameOnWhiteList = true;
 
       // Send the name to the tree
