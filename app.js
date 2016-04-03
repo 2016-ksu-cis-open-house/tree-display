@@ -107,6 +107,7 @@ io.on('connection', function(socket){
     // Check if the name is accepted by the moderator
     if(nameInfo[1])
     {
+      console.log('The name ' + name + ' has been whitelisted');
 
       // Add the various words in the name to the whitelist
       addWhitelistName(name);
@@ -116,6 +117,8 @@ io.on('connection', function(socket){
     }
     else
     {
+      console.log('The name ' + name + ' has been blacklisted');
+
       // Add the name to the blacklist
       black_list.add(name);
     }
