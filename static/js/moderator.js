@@ -10,7 +10,7 @@ $('#accept').click(function(e){
   e.preventDefault();
 
   // Serialize the name and whether the name is valid
-  var nameInfo = JSON.stringify({msg, true});
+  var nameInfo = JSON.stringify([$('#currentName').text(), true]);
 
   // Emit a message to accept the current name
   socket.emit('add name', nameInfo);
@@ -25,7 +25,7 @@ $('#decline').click(function(e){
   e.preventDefault();
 
   // Serialize the name and whether the name is valid
-  var nameInfo = JSON.stringify({msg, false});
+  var nameInfo = JSON.stringify([$('#currentName').text(), false]);
 
   // Emit a message to accept the current name
   socket.emit('add name', nameInfo);
