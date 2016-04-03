@@ -6,6 +6,9 @@ $('form').submit(function(e){
 
   // Send the name to the server to be verified as appropriate
   socket.emit('verify name', $('#name').val());
+
+  // Remove error banner from form
+  $('.errorNotification').remove();
 });
 
 // Handle when the user enters an inappropriate name
