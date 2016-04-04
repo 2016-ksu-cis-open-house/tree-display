@@ -55,6 +55,9 @@ io.on('connection', function(socket){
     // Create variables to assess the validity of the name
     var nameElements = msg.split(" ");
     var nameScore = 0;
+    var nameInfo = {"name":"", "accepted":""};
+    nameInfo['name'] = msg;
+    nameInfo['accepted'] = false;
 
     // Verify that all of the separate words in the name are
     // on the whitelist
@@ -72,7 +75,8 @@ io.on('connection', function(socket){
     if(nameScore == nameElements.length)
     {
       // Update the tree and thank the user
-      endUserInteraction(msg);
+      nameInfo['accepted'] = true;
+      socket.emit('end interaction', nameInfo);
 
       // Push the name to the tree
       io.emit('add name', msg);
@@ -84,8 +88,9 @@ io.on('connection', function(socket){
 
     // Verify that the name as a whole is on the blacklist
     if (black_list.has(msg.toLowerCase())) {
-      // Show unaccepted name notification
-      socket.emit('blacklisted name', msg);
+      // Update the tree and thank the user
+      nameInfo['accepted'] = false;
+      socket.emit('end interaction', nameInfo);
 
       console.log('The word ' + msg + ' is on the blacklist');
 
@@ -114,8 +119,6 @@ io.on('connection', function(socket){
       // Push the name to the tree
       io.emit('add name', name);
 
-      // Update the tree and thank the user
-      endUserInteraction(name);
     }
     else
     {
@@ -124,6 +127,9 @@ io.on('connection', function(socket){
       // Add the name to the blacklist
       black_list.add(name);
     }
+
+    // Update the tree and thank the user
+    socket.emit('end interaction', msgInfo);
   });
 
   // Send the name to the tree
@@ -151,13 +157,6 @@ function whitelistName(name)
       white_list.add(word.toLowerCase());
     }
   }
-}
-
-// End the interaction that the current user has with the program
-function endUserInteraction(name)
-{
-  // Show the thank you message
-  io.emit('thank you');
 }
 
 http.listen(3000, function(){

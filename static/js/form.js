@@ -11,23 +11,43 @@ $('form').submit(function(e){
   $('.errorNotification').remove();
 });
 
-// Handle when the user enters an inappropriate name
-socket.on('blacklisted name', function(msg){
-  // Display error notification
-  errorNotify();
+// Handle the success or failure of the user entry
+socket.on('end interaction', function(msgResponse){
+  // Get the user's name and acceptability
+  var name = msgResponse['name'];
+  var acceptableResponse = msgResponse['accepted'];
 
-  // Remove name from textbox
-  $('#name').val('');
+  // Handle success
+  if(msgResponse['accepted'])
+  {
+    acceptName();
+  }
+  // Handle failure
+  else
+  {
+    denyName();
+  }
 });
 
-// Handle the end of the interaction between the user and the tree
-socket.on('thank you', function(){
+// Hande actions when the name is accepted
+function acceptName()
+{
   // Remove form
   $('form').remove();
 
   // Display a form that thanks the user
   $('.registration').append($('<br><br>'), $('<h3>').text('Thanks!'));
-});
+}
+
+// Handle actions when the name is denied
+function denyName()
+{
+  // Display error notification
+  errorNotify();
+
+  // Remove name from textbox
+  $('#name').val('');
+}
 
 // Create an error banner
 function errorNotify()
