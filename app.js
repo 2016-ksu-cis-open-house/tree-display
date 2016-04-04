@@ -74,6 +74,9 @@ io.on('connection', function(socket){
       // Update the tree and thank the user
       endUserInteraction(msg);
 
+      // Push the name to the tree
+      io.emit('add name', msg);
+
       console.log('The name ' + msg + ' is on the whitelist');
 
       return;
@@ -107,6 +110,9 @@ io.on('connection', function(socket){
 
       // Add the various words in the name to the whitelist
       whitelistName(name);
+
+      // Push the name to the tree
+      io.emit('add name', name);
 
       // Update the tree and thank the user
       endUserInteraction(name);
@@ -150,9 +156,6 @@ function whitelistName(name)
 // End the interaction that the current user has with the program
 function endUserInteraction(name)
 {
-  // Push the name to the tree
-  io.emit('add name', name);
-
   // Show the thank you message
   io.emit('thank you');
 }
