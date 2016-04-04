@@ -11,6 +11,8 @@ app.set('view engine', 'jade');
 // Create a set to hold the names added to the tree
 var names = new sets.Set();
 
+// TODO: Create a queue of dictionaries(name: socket) to
+// collect the names to be moderated
 
 // Initialize whitelist and black list
 var white_list = new sets.Set();
@@ -59,6 +61,8 @@ io.on('connection', function(socket){
     nameInfo['name'] = msg;
     nameInfo['accepted'] = false;
 
+    // TODO: Inform the user that their name is already on the tree
+
     // Verify that all of the separate words in the name are
     // on the whitelist
     var i;
@@ -97,11 +101,15 @@ io.on('connection', function(socket){
       return;
     }
 
+    // TODO: Send the name to a queue
+
     // Send the name to the moderator to verify
     io.emit('moderate name', msg);
 
     console.log('The name ' + msg + ' was sent to the moderator');
   });
+
+  // TODO: Add functionality to give the moderator a name when asked
 
   // Submit the name to be added to the proper lists and/or the tree
   socket.on('submit name info', function(msgInfo){
@@ -123,6 +131,8 @@ io.on('connection', function(socket){
     {
       // Add the name to the blacklist
       black_list.add(name);
+
+      // TODO: Display the error notification to the user
 
       console.log('The name ' + name + ' has been blacklisted');
     }
