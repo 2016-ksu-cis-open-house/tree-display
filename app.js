@@ -8,7 +8,9 @@ var sets = require('simplesets');
 app.use(express.static('static'));
 app.set('view engine', 'jade');
 
-var names = [];
+// Create a set to hold the names added to the tree
+var names = new sets.Set();
+
 
 // Initialize whitelist and black list
 var white_list = new sets.Set();
@@ -122,7 +124,7 @@ io.on('connection', function(socket){
   // Send the name to the tree
   socket.on('add name', function(msg){
     // Add the current name to the list of names
-    names.push(word);
+    names.add(msg);
   });
 });
 
