@@ -1,9 +1,13 @@
 var socket = io();
+var nameInfo = {"name":"", "accepted":""};
 
 // Get the name from the server and put on the form for
 // the moderator to approve
 socket.on('moderate name', function(msg){
   $('#currentName').text(msg);
+
+  // Put the current name in the data to be transmitted
+  nameInfo['name'] = $('#currentName').text();
 });
 
 // Handle when the moderator accepts the current name
@@ -13,8 +17,8 @@ $('#accept').click(function(e){
 
   console.log('The name ' + $('#currentName').text() + ' has been accepted');
 
-  // Serialize the name and whether the name is valid
-  var nameInfo = JSON.stringify([$('#currentName').text(), true]);
+  // Input whether the name is valid
+  nameInfo['accepted'] = true;
 
   // Emit a message to accept the current name
   socket.emit('submit name info', nameInfo);
@@ -30,8 +34,8 @@ $('#decline').click(function(e){
 
   console.log('The name ' + $('#currentName').text() + ' has been denied');
 
-  // Serialize the name and whether the name is valid
-  var nameInfo = JSON.stringify([$('#currentName').text(), false]);
+  // Input whether the name is valid
+  nameInfo['accepted'] = false;
 
   // Emit a message to accept the current name
   socket.emit('submit name info', nameInfo);

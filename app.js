@@ -97,12 +97,11 @@ io.on('connection', function(socket){
 
   // Submit the name to be added to the proper lists and/or the tree
   socket.on('submit name info', function(msgInfo){
-    // Deserialize parameter
-    var nameInfo = JSON.parse(msgInfo);
-    var name = nameInfo[0];
+    // Get the name from the parameter
+    var name = msgInfo['name'];
 
     // Check if the name was accepted by the moderator
-    if(nameInfo[1])
+    if(msgInfo['accepted'])
     {
       console.log('The name ' + name + ' has been whitelisted');
 
