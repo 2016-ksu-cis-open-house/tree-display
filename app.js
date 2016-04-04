@@ -111,21 +111,20 @@ io.on('connection', function(socket){
     // Check if the name was accepted by the moderator
     if(msgInfo['accepted'])
     {
-      console.log('The name ' + name + ' has been whitelisted');
-
       // Add the various words in the name to the whitelist
       whitelistName(name);
 
       // Push the name to the tree
       io.emit('add name', name);
 
+      console.log('The name ' + name + ' has been whitelisted');
     }
     else
     {
-      console.log('The name ' + name + ' has been blacklisted');
-
       // Add the name to the blacklist
       black_list.add(name);
+
+      console.log('The name ' + name + ' has been blacklisted');
     }
 
     // Update the tree and thank the user
