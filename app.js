@@ -82,8 +82,11 @@ io.on('connection', function(socket){
       nameInfo['accepted'] = true;
       socket.emit('end interaction', nameInfo);
 
+      // Add the current name to the list of names
+      names.add(msg);
+
       // Push the name to the tree
-      io.emit('add name', msg);
+      socket.emit('add name', msg);
 
       console.log('The name ' + msg + ' is on the whitelist');
 
@@ -122,8 +125,11 @@ io.on('connection', function(socket){
       // Add the various words in the name to the whitelist
       whitelistName(name);
 
+      // Add the current name to the list of names
+      names.add(msg);
+
       // Push the name to the tree
-      io.emit('add name', name);
+      socket.emit('add name', name);
 
       console.log('The name ' + name + ' has been whitelisted');
     }
@@ -139,12 +145,6 @@ io.on('connection', function(socket){
 
     // Update the tree and thank the user
     socket.emit('end interaction', msgInfo);
-  });
-
-  // Send the name to the tree
-  socket.on('add name', function(msg){
-    // Add the current name to the list of names
-    names.add(msg);
   });
 });
 
