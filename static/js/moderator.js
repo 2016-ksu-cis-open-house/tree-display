@@ -21,7 +21,7 @@ $('#accept').click(function(e){
   console.log('The name ' + $('#currentName').text() + ' has been accepted');
 
   // Input whether the name is valid
-  nameInfo['accepted'] = true;
+  nameInfo['action'] = "accepted";
 
   // Emit a message to accept the current name
   socket.emit('submit name info', nameInfo);
@@ -38,7 +38,7 @@ $('#decline').click(function(e){
   console.log('The name ' + $('#currentName').text() + ' has been denied');
 
   // Input whether the name is valid
-  nameInfo['accepted'] = false;
+  nameInfo['action'] = "declined";
 
   // Emit a message to accept the current name
   socket.emit('submit name info', nameInfo);

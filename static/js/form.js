@@ -15,10 +15,14 @@ $('form').submit(function(e){
 socket.on('end interaction', function(msgResponse){
   // Get the user's name and acceptability
   var name = msgResponse['name'];
-  var acceptableResponse = msgResponse['accepted'];
 
+  // Handle duplicate name
+  if(msgResponse['action'] == 'duplicate')
+  {
+    duplicateName();
+  }
   // Handle success
-  if(msgResponse['accepted'])
+  else if(msgResponse['action'] == 'accepted')
   {
     acceptName();
   }
@@ -28,6 +32,18 @@ socket.on('end interaction', function(msgResponse){
     denyName();
   }
 });
+
+function duplicateName()
+{
+  // Remove form
+  $('form').remove();
+
+  // Display a form that thanks the user
+  $('.registration').append($('<br><br>'), $('<h3>').text('Thanks!'));
+
+  // Show duplicate name notification
+  duplicateNotify();
+}
 
 // Hande actions when the name is accepted
 function acceptName()
@@ -50,6 +66,25 @@ function denyName()
 }
 
 // Create an error banner
+function duplicateNotify()
+{
+  // Create the banner
+  var dup = $('<div>')
+    .addClass('duplicateNotification')
+    .text('Your name is already on the tree! Try to find it!')
+    .append(
+      // Create the exit button for the banner
+      $('<div>')
+        .addClass('dExitButton')
+        .text('X')
+        .click(function() {
+          error.fadeOut(250);
+        })
+      )
+    .prependTo($(document.body));
+}
+
+// Create an error banner
 function errorNotify()
 {
   // Create the banner
@@ -59,7 +94,7 @@ function errorNotify()
     .append(
       // Create the exit button for the banner
       $('<div>')
-        .addClass('exitButton')
+        .addClass('eExitButton')
         .text('X')
         .click(function() {
           error.fadeOut(250);
