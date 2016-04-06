@@ -79,6 +79,18 @@ io.on('connection', function(socket){
       return;
     }
 
+    // Verify that the name as a whole is on the blacklist
+    if (black_list.has(msg.toLowerCase())) {
+      // Update the tree and thank the user
+      nameInfo['action'] = "declined";
+
+      socket.emit('end interaction', nameInfo);
+
+      console.log('The word ' + msg + ' is on the blacklist');
+
+      return;
+    }
+
     // Verify that all of the separate words in the name are
     // on the whitelist
     var i;
@@ -106,18 +118,6 @@ io.on('connection', function(socket){
       socket.emit('add name', msg);
 
       console.log('The name ' + msg + ' is on the whitelist');
-
-      return;
-    }
-
-    // Verify that the name as a whole is on the blacklist
-    if (black_list.has(msg.toLowerCase())) {
-      // Update the tree and thank the user
-      nameInfo['action'] = "declined";
-
-      socket.emit('end interaction', nameInfo);
-
-      console.log('The word ' + msg + ' is on the blacklist');
 
       return;
     }
