@@ -20,6 +20,7 @@ load_file(white_list, 'special_names/whitelist.txt');
 var black_list = new sets.Set();
 load_file(black_list, 'special_names/blacklist.txt');
 
+// Load the given file and put the content into the given set
 function load_file(s, file) {
   fs.readFile(file, 'utf8', function(err, data) {
     if (err) {
@@ -34,15 +35,17 @@ function load_file(s, file) {
   });
 };
 
-
+// Handle when a person goes to the index page
 app.get('/', function (req, res){
   res.render('index');
 });
 
+// Handle when someone goes to the tree page
 app.get('/tree', function (req, res){
   res.render('tree', {names: names});
 });
 
+// Handle when someone goes to the moderator page
 app.get('/moderator', function (req, res){
   res.render('moderator', {names: names});
 });
