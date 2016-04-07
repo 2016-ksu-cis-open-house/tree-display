@@ -26,6 +26,11 @@ socket.on('end interaction', function(msgResponse){
   {
     acceptName();
   }
+  // Handle illegal character
+  else if(msgResponse['action'] == 'illegal')
+  {
+    illegalName();
+  }
   // Handle failure
   else
   {
@@ -65,6 +70,16 @@ function denyName()
   $('#name').val('');
 }
 
+// Handle actions when the name contains an illegal character
+function illegalName()
+{
+  // Display error notification
+  illegalNotify();
+
+  // Remove name from textbox
+  $('#name').val('');
+}
+
 // Create an error banner
 function duplicateNotify()
 {
@@ -95,6 +110,25 @@ function errorNotify()
       // Create the exit button for the banner
       $('<div>')
         .addClass('eExitButton')
+        .text('X')
+        .click(function() {
+          error.fadeOut(250);
+        })
+      )
+    .prependTo($(document.body));
+}
+
+// Create an illegal character banner
+function illegalNotify()
+{
+  // Create the banner
+  var dup = $('<div>')
+    .addClass('illegalNotification')
+    .text('Your name can only contain English letters, dashes, or apostrophes.')
+    .append(
+      // Create the exit button for the banner
+      $('<div>')
+        .addClass('iExitButton')
         .text('X')
         .click(function() {
           error.fadeOut(250);

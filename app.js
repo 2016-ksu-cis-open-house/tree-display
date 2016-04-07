@@ -58,11 +58,30 @@ io.on('connection', function(socket){
     console.log('Attempting to add name ' + msg);
 
     // Create variables to assess the validity of the name
-    var nameElements = msg.split(" ");
+    var nameElements = msg.split(/[-\s]/);
     var nameScore = 0;
     var nameInfo = {"name":"", "accepted":""};
     nameInfo['name'] = msg;
     nameInfo['action'] = "denied";
+
+    // Notify the user that they cannot use the name they have
+    // provided because it contains illegal characters
+    var englishLetters = /[^a-zA-Z]/;
+    var cNum;
+    for(cNum = 0; cNum < msg.length; cNum++)
+    {
+      if(englishLetters.test(msg[cNum]) && (msg[cNum] !== "-") && (msg[cNum] !== "'") && (msg[cNum] !== " "))
+      {
+        // Update the tree and thank the user
+        nameInfo['action'] = "illegal";
+
+        socket.emit('end interaction', nameInfo);
+
+        console.log('The name ' + msg + ' contains an illegal character');
+
+        return;
+      }
+    }
 
     // TODO: Inform the user that their name is already on the tree
     // Inform the user that their name is already on the tree
