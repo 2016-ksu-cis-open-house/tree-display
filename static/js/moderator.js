@@ -10,18 +10,21 @@ socket.on('moderate name', function(msg){
   $('#currentName').text(msg);
 
   // Put the current name in the data to be transmitted
-  nameInfo['name'] = $('#currentName').text();
+  nameInfo.name = $('#currentName').text();
 });
 
-// Handle when the moderator accepts the current name
+
+
+// Moderator accepts the current name
 $('#accept').click(function(e){
-  // Prevent JavaScript from doing normal functionality
+
+  // Prevent form submission and redirect
   e.preventDefault();
 
   console.log('The name ' + $('#currentName').text() + ' has been accepted');
 
   // Input whether the name is valid
-  nameInfo['action'] = "accepted";
+  nameInfo.action = "accepted";
 
   // Emit a message to accept the current name
   socket.emit('submit name info', nameInfo);
@@ -30,15 +33,18 @@ $('#accept').click(function(e){
   $('#currentName').empty();
 });
 
-// Handle when the moderator declines the current name
+
+
+// Moderator declines the current name
 $('#decline').click(function(e){
-  // Prevent JavaScript from doing normal functionality
+
+  // Prevent form submission and redirect
   e.preventDefault();
 
   console.log('The name ' + $('#currentName').text() + ' has been denied');
 
   // Input whether the name is valid
-  nameInfo['action'] = "declined";
+  nameInfo.action = "declined";
 
   // Emit a message to accept the current name
   socket.emit('submit name info', nameInfo);

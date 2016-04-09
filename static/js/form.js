@@ -1,7 +1,7 @@
 var socket = io();
 
 // Handle when the user submits a name to the tree
-$('form').submit(function(e){
+$('form').submit(function(e) {
   e.preventDefault();
 
   // Send the name to the server to be verified as appropriate
@@ -20,28 +20,23 @@ socket.on('end interaction', function(msgResponse){
   var name = msgResponse['name'];
 
   // Handle duplicate name
-  if(msgResponse['action'] == 'duplicate')
-  {
+  if( msgResponse['action'] == 'duplicate' ) {
     duplicateName();
   }
-  // Handle success
-  else if(msgResponse['action'] == 'accepted')
-  {
+
+  else if(msgResponse['action'] == 'accepted') {
     acceptName();
   }
-  // Handle illegal character
-  else if(msgResponse['action'] == 'illegal')
-  {
+
+  else if(msgResponse['action'] == 'illegal') {
     illegalName();
   }
-  // Handle failure
-  else if(msgResponse['action'] == 'declined')
-  {
+
+  else if(msgResponse['action'] == 'declined') {
     denyName();
   }
-  // Handle moderator processing
-  else
-  {
+
+  else {
     processingName();
   }
 });
