@@ -61,9 +61,7 @@ io.on('connection', function(socket){
     // Create variables to assess the validity of the name
     var nameElements = msg.split(/[-\s]/);
     var nameScore = 0;
-    var nameInfo = {"name":"", "accepted":""};
-    nameInfo['name'] = msg;
-    nameInfo['action'] = "denied";
+    var nameInfo = {"name":msg, "action":"processing"};
 
     // Notify the user that they cannot use the name they have
     // provided because it contains illegal characters
@@ -143,6 +141,8 @@ io.on('connection', function(socket){
     }
 
     // TODO: Send the name to a queue
+    // Inform the user that the name is being processed
+    socket.emit('end interaction', nameInfo);
     // Add the current name and socket info to the list
     userList[msg] = socket;
 

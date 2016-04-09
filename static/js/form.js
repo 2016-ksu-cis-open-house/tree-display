@@ -7,8 +7,11 @@ $('form').submit(function(e){
   // Send the name to the server to be verified as appropriate
   socket.emit('verify name', $('#name').val());
 
-  // Remove error banner from form
+  // Remove any notifications from the form
+  S('.duplicateNotification').remove();
   $('.errorNotification').remove();
+  S('.illegalNotification').remove();
+  S('.waitNotification').remove();
 });
 
 // Handle the success or failure of the user entry
@@ -32,9 +35,14 @@ socket.on('end interaction', function(msgResponse){
     illegalName();
   }
   // Handle failure
-  else
+  else if(msgResponse['action'] == 'declined')
   {
     denyName();
+  }
+  // Handle moderator processing
+  else
+  {
+    processingName();
   }
 });
 
@@ -78,6 +86,13 @@ function illegalName()
 
   // Remove name from textbox
   $('#name').val('');
+}
+
+// Handle actions when the name is being moderated
+function processingName()
+{
+  // Display processing notification
+  waitNotify();
 }
 
 // Create an error banner
@@ -129,6 +144,25 @@ function illegalNotify()
       // Create the exit button for the banner
       $('<div>')
         .addClass('iExitButton')
+        .text('X')
+        .click(function() {
+          error.fadeOut(250);
+        })
+      )
+    .prependTo($(document.body));
+}
+
+// Create an processing banner
+function waitNotify()
+{
+  // Create the banner
+  var error = $('<div>')
+    .addClass('waitNotification')
+    .text('Please wait while your name is being processed...')
+    .append(
+      // Create the exit button for the banner
+      $('<div>')
+        .addClass('wExitButton')
         .text('X')
         .click(function() {
           error.fadeOut(250);

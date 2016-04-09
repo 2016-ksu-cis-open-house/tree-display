@@ -166,6 +166,23 @@ input[type="submit"]:hover {
 
     padding: 0.5em;
 }
+.waitNotification {
+    background-color: #7700FF;
+    position: relative;
+    color: white;
+
+    padding: 2em;
+}
+.wExitButton {
+    background-color: #6622B3;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-weight: bold;
+
+    padding: 0.5em;
+}
 .illegalNotification {
     background-color: #E23121;
     position: relative;
