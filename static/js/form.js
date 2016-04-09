@@ -41,31 +41,21 @@ socket.on('end interaction', function(msgResponse){
   }
 });
 
-function duplicateName()
-{
-  // Remove form
+// Name was duplicate
+function duplicateName() {
   $('form').remove();
-
-  // Display a form that thanks the user
   $('.registration').append($('<br><br>'), $('<h3>').text('Thanks!'));
-
-  // Show duplicate name notification
   duplicateNotify();
 }
 
-// Hande actions when the name is accepted
-function acceptName()
-{
-  // Remove form
+// Name was accepted
+function acceptName() {
   $('form').remove();
-
-  // Display a form that thanks the user
   $('.registration').append($('<br><br>'), $('<h3>').text('Thanks!'));
 }
 
-// Handle actions when the name is denied
-function denyName()
-{
+// Name was denied
+function denyName() {
   // Display error notification
   errorNotify();
 
@@ -73,9 +63,8 @@ function denyName()
   $('#name').val('');
 }
 
-// Handle actions when the name contains an illegal character
-function illegalName()
-{
+// Name contained an illegal character
+function illegalName() {
   // Display error notification
   illegalNotify();
 
@@ -83,16 +72,14 @@ function illegalName()
   $('#name').val('');
 }
 
-// Handle actions when the name is being moderated
-function processingName()
-{
+// Name is being moderated
+function processingName() {
   // Display processing notification
   waitNotify();
 }
 
-// Create an error banner
-function duplicateNotify()
-{
+// Create a duplicate banner
+function duplicateNotify() {
   // Create the banner
   var dup = $('<div>')
     .addClass('duplicateNotification')
@@ -110,8 +97,7 @@ function duplicateNotify()
 }
 
 // Create an error banner
-function errorNotify()
-{
+function errorNotify() {
   // Create the banner
   var error = $('<div>')
     .addClass('errorNotification')
@@ -129,8 +115,7 @@ function errorNotify()
 }
 
 // Create an illegal character banner
-function illegalNotify()
-{
+function illegalNotify() {
   // Create the banner
   var dup = $('<div>')
     .addClass('illegalNotification')
@@ -148,8 +133,7 @@ function illegalNotify()
 }
 
 // Create an processing banner
-function waitNotify()
-{
+function waitNotify() {
   // Create the banner
   var error = $('<div>')
     .addClass('waitNotification')

@@ -18,9 +18,6 @@ socket.on('moderate name', function(msg){
 // Moderator accepts the current name
 $('#accept').click(function(e){
 
-  // Prevent form submission and redirect
-  e.preventDefault();
-
   console.log('The name ' + $('#currentName').text() + ' has been accepted');
 
   // Input whether the name is valid
@@ -37,9 +34,6 @@ $('#accept').click(function(e){
 
 // Moderator declines the current name
 $('#decline').click(function(e){
-
-  // Prevent form submission and redirect
-  e.preventDefault();
 
   console.log('The name ' + $('#currentName').text() + ' has been denied');
 
