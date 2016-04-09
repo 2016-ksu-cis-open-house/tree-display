@@ -14,6 +14,7 @@ var names = new sets.Set();
 
 // TODO: Create a queue of dictionaries(name: socket) to
 // collect the names to be moderated
+var userList = {};
 
 // Initialize whitelist and black list
 var white_list = new sets.Set();
@@ -142,6 +143,8 @@ io.on('connection', function(socket){
     }
 
     // TODO: Send the name to a queue
+    // Add the current name and socket info to the list
+    userList[msg] = socket;
 
     // Send the name to the moderator to verify
     io.emit('moderate name', msg);
@@ -155,6 +158,14 @@ io.on('connection', function(socket){
   socket.on('submit name info', function(msgInfo){
     // Get the name from the parameter
     var name = msgInfo['name'];
+    var curSocket = userList[name];
+
+    // Check if the name is in the list of names
+    if(curSocket === undefined)
+    {
+      console.log('Error: Name not in list.');
+      return;
+    }
 
     // Check if the name was accepted by the moderator
     if(msgInfo['action'] == 'accepted')
@@ -163,7 +174,7 @@ io.on('connection', function(socket){
       whitelistName(name);
 
       // Add the current name to the list of names
-      names.add(msg);
+      names.add(name);
 
       // Push the name to the tree
       socket.emit('add name', name);
@@ -181,7 +192,7 @@ io.on('connection', function(socket){
     }
 
     // Update the tree and thank the user
-    socket.emit('end interaction', msgInfo);
+    curSocket.emit('end interaction', msgInfo);
   });
 });
 
