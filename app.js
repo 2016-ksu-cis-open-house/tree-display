@@ -12,9 +12,8 @@ app.set('view engine', 'jade');
 // Create a set to hold the names added to the tree
 var names = new sets.Set();
 
-// TODO: Create a queue of dictionaries(name: socket) to
-// collect the names to be moderated
-var userList = {};
+// Create a queue of names to be moderated
+var nameQueue = new Queue();
 
 // Initialize whitelist and black list
 var white_list = new sets.Set();
@@ -82,10 +81,8 @@ io.on('connection', function(socket){
       }
     }
 
-    // TODO: Inform the user that their name is already on the tree
-    // Inform the user that their name is already on the tree
-    // or (TODO) on the queue of names for the moderator
-    if(names.has(msg))
+    // Check if the name is on the tree or the queue already
+    if(names.has(msg) || nameQueue.containsKey(msg))
     {
       // Update the tree and thank the user
       nameInfo['action'] = "duplicate";
@@ -140,25 +137,45 @@ io.on('connection', function(socket){
       return;
     }
 
-    // TODO: Send the name to a queue
+    // Add the name to the queue for the moderator
+    nameQueue.enqueue({'name':msg, 'soc':socket});
+
     // Inform the user that the name is being processed
     socket.emit('end interaction', nameInfo);
-    // Add the current name and socket info to the list
-    userList[msg] = socket;
 
-    // Send the name to the moderator to verify
-    io.emit('moderate name', msg);
-
-    console.log('The name ' + msg + ' was sent to the moderator');
+    console.log('The name ' + msg + ' was added to the queue');
   });
 
-  // TODO: Add functionality to give the moderator a name when asked
+  // Provide a name to the moderator every second
+  setInterval(function(){
+    provideName();
+  }, 1000);
+
+  // Give the moderator a name
+  function provideName()
+  {
+    var curUser;
+    var curName;
+
+    // Check if there is a name currently
+    if(!nameQueue.isEmpty())
+    {
+      // Get next name
+      curUser = nameQueue.peek();
+      console.log('The current user info is: ' + curUser);
+      curName = curUser['name'];
+
+      // Send the name to the moderator to verify
+      io.emit('moderate name', curName);
+    }
+  };
 
   // Submit the name to be added to the proper lists and/or the tree
   socket.on('submit name info', function(msgInfo){
     // Get the name from the parameter
-    var name = msgInfo['name'];
-    var curSocket = userList[name];
+    var userInfo = nameQueue.dequeue();
+    var name = userInfo['name'];
+    var curSocket = userInfo['soc'];
 
     // Check if the name is in the list of names
     if(curSocket === undefined)
@@ -185,8 +202,6 @@ io.on('connection', function(socket){
     {
       // Add the name to the blacklist
       black_list.add(name);
-
-      // TODO: Display the error notification to the user
 
       console.log('The name ' + name + ' has been blacklisted');
     }
@@ -215,6 +230,60 @@ function whitelistName(name)
     }
   }
 }
+
+// Queue functionality from code.stephenmorley.org
+function Queue()
+{
+  var a=[],b=0;
+
+  // Get the length of the queue
+  this.getLength=function(){
+    return a.length-b;
+  };
+
+  // Tell the user whether or not the queue is empty
+  this.isEmpty=function()
+  {
+    return 0===a.length;
+  };
+
+  // Add an element to the end of the queue
+  this.enqueue=function(b)
+  {
+    a.push(b);
+  };
+
+  // Remove and return the element at the front of the queue
+  this.dequeue=function()
+  {
+    if(0!==a.length)
+    {
+      var c=a[b];
+      a.splice(0, 1);
+      return c;
+    }
+  };
+
+  // Return the value of the element at the front of the queue
+  this.peek=function()
+  {
+    return 0<a.length?a[b]:void 0;
+  };
+
+  // Return whether or not the key is in the queue
+  this.containsKey=function(name)
+  {
+    var i;
+    for(i = 0; i < a.length; i++)
+    {
+      if(a[i]['name'] == name)
+      {
+        return true;
+      }
+    }
+    return false;
+  };
+};
 
 http.listen(3000, function(){
   console.log('Listening on port 3000!');

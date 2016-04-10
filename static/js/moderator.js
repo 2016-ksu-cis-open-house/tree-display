@@ -1,8 +1,6 @@
 var socket = io();
 var nameInfo = {"name":"", "accepted":""};
 
-// TODO: Add a request to the server for a name
-
 // Get the name from the server and put on the form for
 // the moderator to approve
 socket.on('moderate name', function(msg){
