@@ -147,13 +147,12 @@ io.on('connection', function(socket){
   });
 
   // Provide a name to the moderator every second
-  setInterval(function(){
+  setInterval(function() {
     provideName();
   }, 1000);
 
   // Give the moderator a name
-  function provideName()
-  {
+  function provideName() {
     var curUser;
     var curName;
 
@@ -212,8 +211,7 @@ io.on('connection', function(socket){
 });
 
 // Add the words in the provided name to the whitelist
-function whitelistName(name)
-{
+function whitelistName(name) {
   var nameElements = name.split(" ");
   var i;
   var numEleNames = nameElements.length;
@@ -232,8 +230,7 @@ function whitelistName(name)
 }
 
 // Queue functionality from code.stephenmorley.org
-function Queue()
-{
+function Queue() {
   var a=[],b=0;
 
   // Get the length of the queue
