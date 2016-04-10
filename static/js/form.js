@@ -6,19 +6,15 @@ $('form').submit(function(e) {
 
   // Send the name to the server to be verified as appropriate
   socket.emit('verify name', $('#name').val());
-
+  
   // Remove any notifications from the form
-  S('.duplicateNotification').remove();
-  $('.errorNotification').remove();
-  S('.illegalNotification').remove();
-  S('.waitNotification').remove();
+  $('#notification_wrapper').html("");
 });
 
 // Handle the success or failure of the user entry
 socket.on('end interaction', function(msgResponse){
   // Get the user's name and acceptability
   var name = msgResponse['name'];
-
   // Handle duplicate name
   if( msgResponse['action'] == 'duplicate' ) {
     duplicateName();
@@ -93,7 +89,8 @@ function duplicateNotify() {
           error.fadeOut(250);
         })
       )
-    .prependTo($(document.body));
+    $('#notification_wrapper').append(dup);
+    window.scroll(0,0);
 }
 
 // Create an error banner
@@ -111,7 +108,8 @@ function errorNotify() {
           error.fadeOut(250);
         })
       )
-    .prependTo($(document.body));
+    $('#notification_wrapper').append(error);
+    window.scroll(0,0);
 }
 
 // Create an illegal character banner
@@ -129,7 +127,8 @@ function illegalNotify() {
           error.fadeOut(250);
         })
       )
-    .prependTo($(document.body));
+    $('#notification_wrapper').append(dup);
+    window.scroll(0,0);
 }
 
 // Create an processing banner
@@ -147,5 +146,6 @@ function waitNotify() {
           error.fadeOut(250);
         })
       )
-    .prependTo($(document.body));
+    $('#notification_wrapper').append(error);
+    window.scroll(0,0);
 }
