@@ -73,7 +73,7 @@ h2 {
 	  border-bottom: none;
 }
 .form-info {
-		border: 2px solid #582c83;	
+		border: 2px solid #582c83;
 		margin: 2em 2em 0 2em;
 }
 .registration {
@@ -131,6 +131,78 @@ input[type="submit"]:hover {
 }
 .copy-rights p a:hover {
 	color:#4fd0db;
+}
+.duplicateNotification {
+    background-color: #27DA4A;
+    position: relative;
+    color: white;
+
+    padding: 2em;
+}
+.dExitButton {
+    background-color: #22CB44;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-weight: bold;
+
+    padding: 0.5em;
+}
+.errorNotification {
+    background-color: #E23121;
+    position: relative;
+    color: white;
+
+    padding: 2em;
+}
+.eExitButton {
+    background-color: #AC2020;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-weight: bold;
+
+    padding: 0.5em;
+}
+.waitNotification {
+    background-color: #7700FF;
+    position: relative;
+    color: white;
+
+    padding: 2em;
+}
+.wExitButton {
+    background-color: #6622B3;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-weight: bold;
+
+    padding: 0.5em;
+}
+.illegalNotification {
+    background-color: #E23121;
+    position: relative;
+    color: white;
+
+    padding: 2em;
+}
+.iExitButton {
+    background-color: #AC2020;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-weight: bold;
+
+    padding: 0.5em;
+}
+#currentName {
+    font-weight: bold;
+    color: #04C;
 }
 /*--/copyrights--*/
 /*--start-responsive-design--*/
