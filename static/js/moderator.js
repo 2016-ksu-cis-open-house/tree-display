@@ -1,36 +1,48 @@
 var socket = io();
-//var verifyNameFormState = false;
+var nameInfo = {"name":"", "accepted":""};
 
+// TODO: Add a request to the server for a name
+
+// Get the name from the server and put on the form for
+// the moderator to approve
 socket.on('moderate name', function(msg){
-    $('#currentName').text(msg);
+  // Update the variable on the form for the current name
+  $('#currentName').text(msg);
+
+  // Put the current name in the data to be transmitted
+  nameInfo.name = $('#currentName').text();
 });
 
+
+
+// Moderator accepts the current name
 $('#accept').click(function(e){
-  // Prevent JavaScript from doing normal functionality
-  e.preventDefault();
 
-  // Serialize the name and whether the name is valid
-  var nameInfo = JSON.stringify({msg, true});
+  console.log('The name ' + $('#currentName').text() + ' has been accepted');
+
+  // Input whether the name is valid
+  nameInfo.action = "accepted";
 
   // Emit a message to accept the current name
-  socket.emit('add name', nameInfo);
+  socket.emit('submit name info', nameInfo);
 
-  // Disable form after first submission
-  $('form').unbind('accept');
-  $('form').accept(function(e){ e.preventDefault(); });
+  // Action after form is submitted
+  $('#currentName').empty();
 });
 
-$('#decline').click(function(e){
-  // Prevent JavaScript from doing normal functionality
-  e.preventDefault();
 
-  // Serialize the name and whether the name is valid
-  var nameInfo = JSON.stringify({msg, false});
+
+// Moderator declines the current name
+$('#decline').click(function(e){
+
+  console.log('The name ' + $('#currentName').text() + ' has been denied');
+
+  // Input whether the name is valid
+  nameInfo.action = "declined";
 
   // Emit a message to accept the current name
-  socket.emit('add name', nameInfo);
+  socket.emit('submit name info', nameInfo);
 
-  // Disable form after first submission
-  $('form').unbind('decline');
-  $('form').decline(function(e){ e.preventDefault(); });
+  // Action after form is submitted
+  $('#currentName').empty();
 });
