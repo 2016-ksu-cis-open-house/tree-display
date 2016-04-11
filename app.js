@@ -130,7 +130,7 @@ io.on('connection', function(socket){
       names.add(msg);
 
       // Push the name to the tree
-      socket.emit('add name', msg);
+      io.emit('add name', msg);
 
       console.log('The name ' + msg + ' is on the whitelist');
 
@@ -193,7 +193,7 @@ io.on('connection', function(socket){
       names.add(name);
 
       // Push the name to the tree
-      socket.emit('add name', name);
+      io.emit('add name', name);
 
       console.log('The name ' + name + ' has been whitelisted');
     }

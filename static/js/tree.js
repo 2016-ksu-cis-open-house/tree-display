@@ -10,15 +10,13 @@ function remove(word){
   $($('input')[3]).click();
 }
 
-
-
 // Add a name to the tree
 socket.on('add name', function(msg){
-  console.log(msg);
+  add(msg);
 });
 
 
 // Remove a name from the tree
 socket.on('remove name', function(msg){
-  console.log(msg);
+  remove(msg);
 });
