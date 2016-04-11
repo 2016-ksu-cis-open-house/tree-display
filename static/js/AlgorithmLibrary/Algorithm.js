@@ -335,7 +335,7 @@ Algorithm.prototype.returnSubmit = function(field, funct, maxsize, intOnly)
 
 Algorithm.prototype.addReturnSubmit = function(field, action)
 {
-	field.onkeydown = this.returnSubmit(field, action, 4, false);	
+	field.onkeydown = this.returnSubmit(field, action, 20, false);	
 }
 
 Algorithm.prototype.reset = function()

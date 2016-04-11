@@ -30,9 +30,9 @@
 var HighlightCircle = function(objectID, color, radius)
 {
 	this.objectID = objectID;
-	this.radius = radius;
+	this.radius = radius * 2;
 	this.thickness = 4;
-	this.foregroundColor = color;
+	this.foregroundColor = "#febd15";
 	this.x = 0;
 	this.y = 0;
 	this.alpha = 1;

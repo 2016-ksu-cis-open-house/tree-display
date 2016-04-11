@@ -37,21 +37,21 @@ AVL.superclass = Algorithm.prototype;
 
 // Various constants
 
-AVL.HIGHLIGHT_LABEL_COLOR = "#FF0000"
-AVL.HIGHLIGHT_LINK_COLOR =  "#FF0000"
+AVL.HIGHLIGHT_LABEL_COLOR = "#FEBD15"
+AVL.HIGHLIGHT_LINK_COLOR =  "#FEBD15"
 
 AVL.HIGHLIGHT_COLOR = "#007700"
-AVL.HEIGHT_LABEL_COLOR = "#007700"
+AVL.HEIGHT_LABEL_COLOR = "#fff"
 
 
-AVL.LINK_COLOR = "#007700";
-AVL.HIGHLIGHT_CIRCLE_COLOR = "#007700";
-AVL.FOREGROUND_COLOR = "0x007700";
-AVL.BACKGROUND_COLOR = "#DDFFDD";
+AVL.LINK_COLOR = "#ddd";
+AVL.HIGHLIGHT_CIRCLE_COLOR = "#FEBD15";
+AVL.FOREGROUND_COLOR = "#000000";
+AVL.BACKGROUND_COLOR = "#B380FF";
 AVL.PRINT_COLOR = AVL.FOREGROUND_COLOR;
 
-AVL.WIDTH_DELTA  = 50;
-AVL.HEIGHT_DELTA = 50;
+AVL.WIDTH_DELTA  = 100;
+AVL.HEIGHT_DELTA = 100;
 AVL.STARTING_Y = 50;
 
 AVL.FIRST_PRINT_POS_X  = 50;
@@ -84,7 +84,7 @@ AVL.prototype.init = function(am, w, h)
 AVL.prototype.addControls =  function()
 {
 	this.insertField = addControlToAlgorithmBar("Text", "");
-	this.insertField.onkeydown = this.returnSubmit(this.insertField,  this.insertCallback.bind(this), 4);
+	this.insertField.onkeydown = this.returnSubmit(this.insertField,  this.insertCallback.bind(this), 20);
 	this.insertButton = addControlToAlgorithmBar("Button", "Insert");
 	this.insertButton.onclick = this.insertCallback.bind(this);
 	this.deleteField = addControlToAlgorithmBar("Text", "");
