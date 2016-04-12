@@ -89,7 +89,7 @@ function duplicateNotify() {
         .addClass('dExitButton')
         .text('X')
         .click(function() {
-          error.fadeOut(250);
+          dup.fadeOut(250);
         })
       )
     $('#notification_wrapper').append(dup);
@@ -127,7 +127,7 @@ function illegalNotify() {
         .addClass('iExitButton')
         .text('X')
         .click(function() {
-          error.fadeOut(250);
+          illegal.fadeOut(250);
         })
       )
     $('#notification_wrapper').append(illegal);
@@ -146,7 +146,7 @@ function waitNotify() {
         .addClass('wExitButton')
         .text('X')
         .click(function() {
-          error.fadeOut(250);
+          wait.fadeOut(250);
         })
       )
     $('#notification_wrapper').append(wait);
