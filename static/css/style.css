@@ -204,6 +204,25 @@ input[type="submit"]:hover {
     font-weight: bold;
     color: #04C;
 }
+button {
+    outline: none;
+	border: none;
+	background: #582c83;
+	color: #fff;
+	width: 85%;
+	margin: 2em 0 1.5em 0;
+	padding: 17px;
+	font-size: 1.2em;
+	font-weight: 400;
+	cursor: pointer;
+}
+button:hover {
+	background: #4fd0db;
+	transition: 1s all;
+	-webkit-transition: 1s all;
+	-moz-transition: 1s all;
+	-o-transition: 1s all;
+}
 /*--/copyrights--*/
 /*--start-responsive-design--*/
 @media (max-width:1440px){
