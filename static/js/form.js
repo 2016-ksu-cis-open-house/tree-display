@@ -6,7 +6,7 @@ $('form').submit(function(e) {
 
   // Send the name to the server to be verified as appropriate
   socket.emit('verify name', $('#name').val());
-  
+
   // Remove any notifications from the form
   $('#notification_wrapper').html("");
 });

@@ -11,8 +11,6 @@ socket.on('moderate name', function(msg){
   nameInfo.name = $('#currentName').text();
 });
 
-
-
 // Moderator accepts the current name
 $('#accept').click(function(e){
 
@@ -27,8 +25,6 @@ $('#accept').click(function(e){
   // Action after form is submitted
   $('#currentName').empty();
 });
-
-
 
 // Moderator declines the current name
 $('#decline').click(function(e){
