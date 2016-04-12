@@ -15,23 +15,20 @@ $('form').submit(function(e) {
 socket.on('end interaction', function(msgResponse){
   // Get the user's name and acceptability
   var name = msgResponse['name'];
+
   // Handle duplicate name
   if( msgResponse['action'] == 'duplicate' ) {
     duplicateName();
   }
-
   else if(msgResponse['action'] == 'accepted') {
     acceptName();
   }
-
   else if(msgResponse['action'] == 'illegal') {
     illegalName();
   }
-
   else if(msgResponse['action'] == 'declined') {
     denyName();
   }
-
   else {
     processingName();
   }
@@ -46,12 +43,18 @@ function duplicateName() {
 
 // Name was accepted
 function acceptName() {
+  // Remove any notifications from the form
+  $('#notification_wrapper').html("");
+
   $('form').remove();
   $('.registration').append($('<br><br>'), $('<h3>').text('Thanks!'));
 }
 
 // Name was denied
 function denyName() {
+  // Remove any notifications from the form
+  $('#notification_wrapper').html("");
+
   // Display error notification
   errorNotify();
 
@@ -115,7 +118,7 @@ function errorNotify() {
 // Create an illegal character banner
 function illegalNotify() {
   // Create the banner
-  var dup = $('<div>')
+  var illegal = $('<div>')
     .addClass('illegalNotification')
     .text('Your name can only contain English letters, dashes, or apostrophes.')
     .append(
@@ -127,14 +130,14 @@ function illegalNotify() {
           error.fadeOut(250);
         })
       )
-    $('#notification_wrapper').append(dup);
+    $('#notification_wrapper').append(illegal);
     window.scroll(0,0);
 }
 
 // Create an processing banner
 function waitNotify() {
   // Create the banner
-  var error = $('<div>')
+  var wait = $('<div>')
     .addClass('waitNotification')
     .text('Please wait while your name is being processed...')
     .append(
@@ -146,6 +149,6 @@ function waitNotify() {
           error.fadeOut(250);
         })
       )
-    $('#notification_wrapper').append(error);
+    $('#notification_wrapper').append(wait);
     window.scroll(0,0);
 }
