@@ -1,8 +1,12 @@
 var socket = io();
+var submitEle = jQuery('input')
 
 // Handle when the user submits a name to the tree
 $('form').submit(function(e) {
   e.preventDefault();
+
+  // Disable textbox and button
+  submitEle.attr('disabled', 'disabled');
 
   // Send the name to the server to be verified as appropriate
   socket.emit('verify name', $('#name').val());
@@ -55,6 +59,9 @@ function denyName() {
   // Remove any notifications from the form
   $('#notification_wrapper').html("");
 
+  // Enable submit textbox and button
+  submitEle.removeAttr("disabled");
+
   // Display error notification
   errorNotify();
 
@@ -64,6 +71,9 @@ function denyName() {
 
 // Name contained an illegal character
 function illegalName() {
+  // Enable submit textbox and button
+  submitEle.removeAttr("disabled");
+
   // Display error notification
   illegalNotify();
 
