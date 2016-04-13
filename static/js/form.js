@@ -92,7 +92,7 @@ function duplicateNotify() {
   // Create the banner
   var dup = $('<div>')
     .addClass('duplicateNotification')
-    .text('Congrats! There is another person with your name!')
+    .text('Aw, snap! Your name is either already on the tree or will be shortly.')
     .append(
       // Create the exit button for the banner
       $('<div>')
