@@ -5,6 +5,7 @@ var io = require('socket.io')(http);
 var fs = require('fs');
 var sets = require('simplesets');
 var os = require('os');
+var Queue = require('./static/js/queue.js');
 
 app.use(express.static('static'));
 app.set('view engine', 'jade');
@@ -228,59 +229,6 @@ function whitelistName(name) {
     }
   }
 }
-
-// Queue functionality from code.stephenmorley.org
-function Queue() {
-  var a=[],b=0;
-
-  // Get the length of the queue
-  this.getLength=function(){
-    return a.length-b;
-  };
-
-  // Tell the user whether or not the queue is empty
-  this.isEmpty=function()
-  {
-    return 0===a.length;
-  };
-
-  // Add an element to the end of the queue
-  this.enqueue=function(b)
-  {
-    a.push(b);
-  };
-
-  // Remove and return the element at the front of the queue
-  this.dequeue=function()
-  {
-    if(0!==a.length)
-    {
-      var c=a[b];
-      a.splice(0, 1);
-      return c;
-    }
-  };
-
-  // Return the value of the element at the front of the queue
-  this.peek=function()
-  {
-    return 0<a.length?a[b]:void 0;
-  };
-
-  // Return whether or not the key is in the queue
-  this.containsKey=function(name)
-  {
-    var i;
-    for(i = 0; i < a.length; i++)
-    {
-      if(a[i]['name'] == name)
-      {
-        return true;
-      }
-    }
-    return false;
-  };
-};
 
 http.listen(3000, function(){
   console.log('Listening on port 3000!');
