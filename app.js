@@ -7,11 +7,13 @@ var sets = require('simplesets');
 var os = require('os');
 var Queue = require('./static/js/queue.js');
 
+var MAX_NAMES = 50;
+
 app.use(express.static('static'));
 app.set('view engine', 'jade');
 
-// Create a set to hold the names added to the tree
-var names = new sets.Set();
+// Create a queue to hold the names added to the tree
+var names = new Queue();
 
 // Create a queue of names to be moderated
 var nameQueue = new Queue();
@@ -83,7 +85,7 @@ io.on('connection', function(socket){
     }
 
     // Check if the name is on the tree or the queue already
-    if(names.has(msg) || nameQueue.containsKey(msg))
+    if(names.containsKey(msg) || nameQueue.containsKey(msg))
     {
       // Update the tree and thank the user
       nameInfo['action'] = "duplicate";
@@ -128,7 +130,12 @@ io.on('connection', function(socket){
       socket.emit('end interaction', nameInfo);
 
       // Add the current name to the list of names
-      names.add(msg);
+      if (names.getLength() >= MAX_NAMES) {
+	n = names.dequeue();
+	console.log("Removed "+ n);
+        io.emit('remove name', n);
+      }
+      names.enqueue(msg);
 
       // Push the name to the tree
       io.emit('add name', msg);
@@ -191,7 +198,13 @@ io.on('connection', function(socket){
       whitelistName(name);
 
       // Add the current name to the list of names
-      names.add(name);
+      if (names.getLength() >= MAX_NAMES) {
+	n = names.dequeue();
+	console.log("Removed "+ n);
+	io.emit("remove name", n);
+      }
+
+      names.enqueue(name);
 
       // Push the name to the tree
       io.emit('add name', name);
