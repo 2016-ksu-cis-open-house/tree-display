@@ -18,7 +18,7 @@ function Queue() {
   // Add an element to the end of the queue
   Queue.prototype.enqueue=function(b)
   {
-    this.a.push(this.b);
+    this.a.push(b);
   };
 
   // Remove and return the element at the front of the queue
@@ -35,7 +35,7 @@ function Queue() {
   // Return the value of the element at the front of the queue
   Queue.prototype.peek=function()
   {
-    return 0<this,a.length?this.a[this.b]:void 0;
+    return 0<this,this.a.length?this.a[this.b]:void 0;
   };
 
   // Return whether or not the key is in the queue
