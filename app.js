@@ -222,6 +222,11 @@ io.on('connection', function(socket){
     // Update the tree and thank the user
     curSocket.emit('end interaction', msgInfo);
   });
+  
+  socket.on('full tree', function() {
+    console.log("Full tree requested");
+    socket.emit('full tree', names);
+  });
 });
 
 // Add the words in the provided name to the whitelist
