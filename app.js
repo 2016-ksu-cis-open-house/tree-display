@@ -144,8 +144,8 @@ io.on('connection', function(socket){
 
       // Add the current name to the list of names
       if (names.getLength() >= MAX_NAMES) {
-	n = names.dequeue();
-	console.log("Removed "+ n);
+	    n = names.dequeue();
+	    console.log("Removed "+ n);
         io.emit('remove name', n);
       }
       names.enqueue(msg);
@@ -182,7 +182,6 @@ io.on('connection', function(socket){
     {
       // Get next name
       curUser = nameQueue.peek();
-      console.log('The current user info is: ' + curUser);
       curName = curUser['name'];
 
       // Send the name to the moderator to verify
