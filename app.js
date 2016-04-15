@@ -6,6 +6,7 @@ var fs = require('fs');
 var sets = require('simplesets');
 var os = require('os');
 var Queue = require('./static/js/queue.js');
+var jsSHA = require('jssha');
 
 var MAX_NAMES = 32;
 
@@ -17,6 +18,14 @@ var names = new Queue();
 
 // Create a queue of names to be moderated
 var nameQueue = new Queue();
+
+var mod;
+
+function isValidPassword(passwd){
+  var shaObj = new jsSHA('SHA-512', 'TEXT');
+  shaObj.update(passwd);
+  return shaObj.getHash("HEX") === "3e5d51ec88c2c8d584eb4ad4ab5d2c1213a778f31dc40a910f18ecabca3bd850cbe694bde8bef5882f8069cdb8bc2a0e3ef02ff72564b967675a9f8b3c664e63";
+}
 
 // Initialize whitelist and black list
 var white_list = new sets.Set();
@@ -55,6 +64,12 @@ app.get('/moderator', function (req, res){
 
 io.on('connection', function(socket){
   console.log('A user connected from: ' + socket.handshake.address);
+
+  socket.on('ima_moderator', function(msg){
+    if(isValidPassword(msg)){
+      mod = socket;
+    }
+  });
 
   // Handle when the user sends a name to be verified
   socket.on('verify name', function(msg){
@@ -185,12 +200,18 @@ io.on('connection', function(socket){
       curName = curUser['name'];
 
       // Send the name to the moderator to verify
-      io.emit('moderate name', curName);
+      mod.emit('moderate name', curName);
     }
   };
 
   // Submit the name to be added to the proper lists and/or the tree
   socket.on('submit name info', function(msgInfo){
+
+    // Validate
+    if(!isValidPassword(msgInfo.password)){
+      return;
+    }
+
     // Get the name from the parameter
     var userInfo = nameQueue.dequeue();
     var name = userInfo['name'];

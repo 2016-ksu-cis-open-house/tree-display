@@ -1,5 +1,12 @@
 var socket = io();
 var nameInfo = {"name":"", "accepted":""};
+var password;
+
+socket.on('connect', function(){
+  password = prompt('Password:');
+  socket.emit('ima_moderator', password);
+});
+
 
 // Get the name from the server and put on the form for
 // the moderator to approve
@@ -19,6 +26,8 @@ $('#accept').click(function(e){
   // Input whether the name is valid
   nameInfo.action = "accepted";
 
+  nameInfo.password = password;
+
   // Emit a message to accept the current name
   socket.emit('submit name info', nameInfo);
 
@@ -33,6 +42,8 @@ $('#decline').click(function(e){
 
   // Input whether the name is valid
   nameInfo.action = "declined";
+
+  nameInfo.password = password;
 
   // Emit a message to accept the current name
   socket.emit('submit name info', nameInfo);
