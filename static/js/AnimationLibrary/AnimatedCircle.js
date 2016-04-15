@@ -29,7 +29,7 @@ var AnimatedCircle = function(objectID, objectLabel)
 {
 	this.objectID = objectID;
 	this.label = objectLabel;
-	this.radius = 40;
+	this.radius = 60;
 	this.thickness = 5;
 	this.x = 0;
 	this.y = 0;
