@@ -7,7 +7,7 @@ var sets = require('simplesets');
 var os = require('os');
 var Queue = require('./static/js/queue.js');
 
-var MAX_NAMES = 16;
+var MAX_NAMES = 32;
 
 app.use(express.static('static'));
 app.set('view engine', 'jade');
