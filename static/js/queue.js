@@ -41,15 +41,7 @@ function Queue() {
   // Return whether or not the key is in the queue
   Queue.prototype.containsKey=function(name)
   {
-    var i;
-    for(i = 0; i < this.a.length; i++)
-    {
-      if(this.a[i]['name'] == name)
-      {
-        return true;
-      }
-    }
-    return false;
+    return this.a.indexOf(name) !== -1;
   };
 
 return Queue;

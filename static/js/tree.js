@@ -2,7 +2,7 @@
 module.exports = (function() {
 // Queue functionality from code.stephenmorley.org
 function Queue() {
-  this.a=[]
+  this.a=[];
   this.b=0;
   }
   // Get the length of the queue
@@ -42,15 +42,7 @@ function Queue() {
   // Return whether or not the key is in the queue
   Queue.prototype.containsKey=function(name)
   {
-    var i;
-    for(i = 0; i < this.a.length; i++)
-    {
-      if(this.a[i]['name'] == name)
-      {
-        return true;
-      }
-    }
-    return false;
+    return this.a.indexOf(name) !== -1;
   };
 
 return Queue;
