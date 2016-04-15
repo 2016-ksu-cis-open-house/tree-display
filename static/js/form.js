@@ -30,6 +30,9 @@ socket.on('end interaction', function(msgResponse){
   else if(msgResponse['action'] == 'illegal') {
     illegalName();
   }
+  else if(msgResponse['action'] == 'limit') {
+    limitName();
+  }
   else if(msgResponse['action'] == 'declined') {
     denyName();
   }
@@ -76,6 +79,18 @@ function illegalName() {
 
   // Display error notification
   illegalNotify();
+
+  // Remove name from textbox
+  $('#name').val('');
+}
+
+// Name suprassed the character limit
+function limitName() {
+  // Enable submit textbox and button
+  submitEle.removeAttr("disabled");
+
+  // Display error notification
+  limitNotify();
 
   // Remove name from textbox
   $('#name').val('');
@@ -141,6 +156,25 @@ function illegalNotify() {
         })
       )
     $('#notification_wrapper').append(illegal);
+    window.scroll(0,0);
+}
+
+// Create an illegal character banner
+function limitNotify() {
+  // Create the banner
+  var limit = $('<div>')
+    .addClass('limitNotification')
+    .text('Your name exceeds the maximum number of 15 characters.')
+    .append(
+      // Create the exit button for the banner
+      $('<div>')
+        .addClass('lExitButton')
+        .text('X')
+        .click(function() {
+          illegal.fadeOut(250);
+        })
+      )
+    $('#notification_wrapper').append(limit);
     window.scroll(0,0);
 }
 

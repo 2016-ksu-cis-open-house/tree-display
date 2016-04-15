@@ -65,6 +65,19 @@ io.on('connection', function(socket){
     var nameScore = 0;
     var nameInfo = {"name":msg, "action":"processing"};
 
+    // Check if the name contains more than 15 characters
+    if(msg.length > 15)
+    {
+      // Update the tree and thank the user
+      nameInfo['action'] = "limit";
+
+      socket.emit('end interaction', nameInfo);
+
+      console.log('The name ' + msg + ' is too long');
+
+      return;
+    }
+
     // Notify the user that they cannot use the name they have
     // provided because it contains illegal characters
     var englishLetters = /[^a-zA-Z]/;
@@ -222,7 +235,7 @@ io.on('connection', function(socket){
     // Update the tree and thank the user
     curSocket.emit('end interaction', msgInfo);
   });
-  
+
   socket.on('full tree', function() {
     console.log("Full tree requested");
     socket.emit('full tree', names);
