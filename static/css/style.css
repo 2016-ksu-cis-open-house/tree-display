@@ -132,14 +132,14 @@ input[type="submit"]:hover {
 .copy-rights p a:hover {
 	color:#4fd0db;
 }
-.duplicateNotification {
+.greenNotification {
     background-color: #27DA4A;
     position: relative;
     color: white;
 
     padding: 2em;
 }
-.dExitButton {
+.gExitButton {
     background-color: #22CB44;
     position: absolute;
     top: 5px;
@@ -149,14 +149,14 @@ input[type="submit"]:hover {
 
     padding: 0.5em;
 }
-.errorNotification {
+.redNotification {
     background-color: #E23121;
     position: relative;
     color: white;
 
     padding: 2em;
 }
-.eExitButton {
+.rExitButton {
     background-color: #AC2020;
     position: absolute;
     top: 5px;
@@ -166,49 +166,15 @@ input[type="submit"]:hover {
 
     padding: 0.5em;
 }
-.waitNotification {
+.purpleNotification {
     background-color: #7700FF;
     position: relative;
     color: white;
 
     padding: 2em;
 }
-.wExitButton {
+.pExitButton {
     background-color: #6622B3;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-    font-weight: bold;
-
-    padding: 0.5em;
-}
-.illegalNotification {
-    background-color: #E23121;
-    position: relative;
-    color: white;
-
-    padding: 2em;
-}
-.iExitButton {
-    background-color: #AC2020;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-    font-weight: bold;
-
-    padding: 0.5em;
-}
-.limitNotification {
-    background-color: #E23121;
-    position: relative;
-    color: white;
-
-    padding: 2em;
-}
-.lExitButton {
-    background-color: #AC2020;
     position: absolute;
     top: 5px;
     right: 5px;

@@ -106,12 +106,12 @@ function processingName() {
 function duplicateNotify() {
   // Create the banner
   var dup = $('<div>')
-    .addClass('duplicateNotification')
+    .addClass('greenNotification')
     .text('Aw, snap! Your name is either already on the tree or will be shortly.')
     .append(
       // Create the exit button for the banner
       $('<div>')
-        .addClass('dExitButton')
+        .addClass('gExitButton')
         .text('X')
         .click(function() {
           dup.fadeOut(250);
@@ -125,12 +125,12 @@ function duplicateNotify() {
 function errorNotify() {
   // Create the banner
   var error = $('<div>')
-    .addClass('errorNotification')
+    .addClass('redNotification')
     .text('Error: Name was not accepted')
     .append(
       // Create the exit button for the banner
       $('<div>')
-        .addClass('eExitButton')
+        .addClass('rExitButton')
         .text('X')
         .click(function() {
           error.fadeOut(250);
@@ -144,12 +144,12 @@ function errorNotify() {
 function illegalNotify() {
   // Create the banner
   var illegal = $('<div>')
-    .addClass('illegalNotification')
+    .addClass('redNotification')
     .text('Your name can only contain English letters, dashes, or apostrophes.')
     .append(
       // Create the exit button for the banner
       $('<div>')
-        .addClass('iExitButton')
+        .addClass('rExitButton')
         .text('X')
         .click(function() {
           illegal.fadeOut(250);
@@ -163,12 +163,12 @@ function illegalNotify() {
 function limitNotify() {
   // Create the banner
   var limit = $('<div>')
-    .addClass('limitNotification')
+    .addClass('redNotification')
     .text('Your name exceeds the maximum number of 15 characters.')
     .append(
       // Create the exit button for the banner
       $('<div>')
-        .addClass('lExitButton')
+        .addClass('rExitButton')
         .text('X')
         .click(function() {
           illegal.fadeOut(250);
@@ -182,12 +182,12 @@ function limitNotify() {
 function waitNotify() {
   // Create the banner
   var wait = $('<div>')
-    .addClass('waitNotification')
+    .addClass('purpleNotification')
     .text('Please wait while your name is being processed...')
     .append(
       // Create the exit button for the banner
       $('<div>')
-        .addClass('wExitButton')
+        .addClass('pExitButton')
         .text('X')
         .click(function() {
           wait.fadeOut(250);
